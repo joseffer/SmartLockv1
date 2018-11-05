@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
 
     public void Alarme_ativar(){
         final boolean alarmeAtivo = (PendingIntent.getBroadcast(this, 0 ,new Intent("chamar"),PendingIntent.FLAG_NO_CREATE) == null);
+
         if (alarmeAtivo){
             Log.i("alarme","novo alarme");
             Intent intent = new Intent("chamar");//nome da action personalizada chamada pelo android manifest
