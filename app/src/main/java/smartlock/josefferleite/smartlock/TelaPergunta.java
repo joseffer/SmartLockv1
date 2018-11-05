@@ -16,6 +16,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 public class TelaPergunta extends AppCompatActivity {
 
@@ -81,10 +82,10 @@ public class TelaPergunta extends AppCompatActivity {
 
     public void carregarinfotela() {
 
-
+        Random random = new Random();
+        int numeroaleatorio = random.nextInt(arrayperguntas.size());
         Perguntas perguntas = new Perguntas();
-   //      Log.i("TEM INFO", arrayperguntas.get(1).getExplicacao());
-        perguntas  =  arrayperguntas.get(1);
+        perguntas  =  arrayperguntas.get(numeroaleatorio);
         txtpergunta = (TextView) findViewById(R.id.txt_pergunta);
         btnresp1  = (android.support.v7.widget.AppCompatButton) findViewById(R.id.btn_resp1);
         btnresp2  = (android.support.v7.widget.AppCompatButton) findViewById(R.id.btn_resp2);
