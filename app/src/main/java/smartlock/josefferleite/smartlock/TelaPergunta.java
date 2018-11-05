@@ -188,7 +188,7 @@ public class TelaPergunta extends AppCompatActivity {
    public void acerto(){
        AlertDialog.Builder mensagem = new AlertDialog.Builder(this);
         mensagem.setTitle("Parabnes");
-        mensagem.setIcon(R.drawable.common_google_signin_btn_icon_light_normal_background);
+        mensagem.setIcon(R.drawable.carinha_feliz);
         mensagem.setMessage("Parabens Voce acerto, pode voltar a mexer no celular");
        mensagem.setPositiveButton("0k", new DialogInterface.OnClickListener() {
            @Override
@@ -201,7 +201,7 @@ public class TelaPergunta extends AppCompatActivity {
     public void errou(){
         AlertDialog.Builder mensagem = new AlertDialog.Builder(this);
         mensagem.setTitle("ops");
-        mensagem.setIcon(R.drawable.common_google_signin_btn_icon_light_normal_background);
+        mensagem.setIcon(R.drawable.carinha_triste);
         mensagem.setMessage("Você errou"+perguntas.getExplicacao());
         mensagem.setPositiveButton("0k", new DialogInterface.OnClickListener() {
             @Override
