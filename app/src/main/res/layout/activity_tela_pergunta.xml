@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.widget.RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/lapis"
+    tools:context=".TelaPergunta">
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_resp1"
+        style="@style/botaopergunta"
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="101dp"
+        android:layout_marginTop="199dp" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_resp2"
+        style="@style/botaopergunta"
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_resp3"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="103dp"
+        android:layout_marginTop="278dp" />
+
+    <android.support.v7.widget.AppCompatButton
+        android:id="@+id/btn_resp3"
+        style="@style/botaopergunta"
+        android:layout_width="156dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/btn_resp1"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="104dp"
+        android:layout_marginTop="355dp" />
+
+    <Button
+        android:id="@+id/btn_ok"
+        style="@style/Widget.AppCompat.Button.Colored"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="14dp"
+        android:background="@color/colorAccent"
+        android:text="@string/Confirmar"
+        android:textColorLink="@color/colorPrimary" />
+
+    <TextView
+        android:id="@+id/txt_pergunta"
+        android:layout_width="match_parent"
+        android:layout_height="103dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:textColor="#feffff"
+        android:textAlignment="center"
+        android:textSize="50dp"
+        android:text="lalaal" />
+
+
+</android.widget.RelativeLayout>

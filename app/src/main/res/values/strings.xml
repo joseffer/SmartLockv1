@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">SmartLock</string>
+    <string name="Pergunta">Pergunta</string>
+    <string name="Respostas">Respostas</string>
+    <string name="Numero1">1</string>
+    <string name="Numero2">2</string>
+    <string name="Numero3">3</string>
+    <string name="Reposta_Certa">Resposta Certa</string>
+    <string name="Explicacai">Explicacao</string>
+    <string name="Confirmar">Confirmar</string>
+</resources>

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "808389489870",
+    "firebase_url": "https://smartklockv1.firebaseio.com",
+    "project_id": "smartklockv1",
+    "storage_bucket": "smartklockv1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:808389489870:android:1d37f4ee3c421110",
+        "android_client_info": {
+          "package_name": "smartlock.josefferleite.smartlock"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "808389489870-mrr5g1h4b7qp3tnti3bt9vpodru7icrr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "smartlock.josefferleite.smartlock",
+            "certificate_hash": "511760b63d59be955dd7070fe84506c46d226c50"
+          }
+        },
+        {
+          "client_id": "808389489870-qcbr59us0pfdscn6e650tpfua44km1sa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAU0XQ5HAOQ8zxZrT4EEKjRNdBfNq8gFt0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "808389489870-qcbr59us0pfdscn6e650tpfua44km1sa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
