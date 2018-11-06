@@ -194,6 +194,7 @@ public class TelaPergunta extends AppCompatActivity {
            @Override
            public void onClick(DialogInterface dialog, int which) {
                stopLockTask();
+               finish();
            }
        });
     mensagem.show();
