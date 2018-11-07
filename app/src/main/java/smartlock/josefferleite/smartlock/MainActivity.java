@@ -8,7 +8,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
+import com.github.rtoshiro.util.format.SimpleMaskFormatter;
+import com.github.rtoshiro.util.format.text.MaskTextWatcher;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -18,6 +21,9 @@ public class MainActivity extends AppCompatActivity {
 
 
     Button aceitar;
+    EditText edt_h;
+    EditText edt_m;
+    EditText edt_s;
 
 
 
@@ -26,14 +32,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
+        edt_h = (EditText)  findViewById(R.id.edt_h);
+        edt_m = (EditText)  findViewById(R.id.edt_m);
+        edt_s = (EditText)  findViewById(R.id.edt_s);
         aceitar = (Button) findViewById(R.id.btn_confirmar);
+
+
+
+
+
         aceitar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Alarme_ativar();
+                Log.i("formato do campo" ,edt_h.getText().toString());
             }
         });
+
 
     }
 

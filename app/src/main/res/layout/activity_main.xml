@@ -11,9 +11,13 @@
     <pl.droidsonroids.gif.GifImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/logogif"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="0dp"
+        android:layout_marginTop="0dp"
         android:background="@android:color/background_light"
-        />
+        android:src="@drawable/logogif"
+        tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/btn_confirmar"
@@ -22,9 +26,9 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        android:layout_marginTop="424dp"
-        android:layout_marginEnd="133dp"
-        android:layout_marginRight="133dp"
+        android:layout_marginTop="463dp"
+        android:layout_marginEnd="136dp"
+        android:layout_marginRight="136dp"
         android:text="@string/Confirmar" />
 
     <ImageView
@@ -38,14 +42,70 @@
         app:srcCompat="@drawable/logo" />
 
     <EditText
-        android:id="@+id/editText2"
-        android:layout_width="wrap_content"
+        android:id="@+id/edt_h"
+        android:layout_width="69dp"
         android:layout_height="wrap_content"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="55dp"
-        android:layout_marginBottom="120dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginBottom="108dp"
         android:ems="10"
-        android:inputType="time" />
+        android:inputType="time"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+    <EditText
+        android:id="@+id/edt_m"
+        android:layout_width="69dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="155dp"
+        android:layout_marginBottom="109dp"
+        android:ems="10"
+        android:inputType="time"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+    <EditText
+        android:id="@+id/edt_s"
+        android:layout_width="69dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="270dp"
+        android:layout_marginBottom="110dp"
+        android:ems="10"
+        android:inputType="time"
+        android:textColor="@color/common_google_signin_btn_text_dark_focused" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edt_h"
+        android:layout_toEndOf="@+id/edt_h"
+        android:text="H"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edt_m"
+        android:layout_marginStart="-113dp"
+        android:layout_marginBottom="5dp"
+        android:layout_toEndOf="@+id/edt_s"
+        android:text="M"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/edt_m"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="7dp"
+        android:layout_toEndOf="@+id/edt_s"
+        android:text="S"
+        android:textSize="20sp" />
 
 </android.widget.RelativeLayout>

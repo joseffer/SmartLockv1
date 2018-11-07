@@ -38,14 +38,18 @@ public class TelaPergunta extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        carregarDados();
-        startLockTask();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tela_pergunta);
 
+        if (arrayperguntas.isEmpty())
+            carregarDados();
+        else
+            carregarinfotela();
 
-          //  carregarDados();
-            Log.i("carregamento","Passei");
+
+        startLockTask();
+
 
 
 
