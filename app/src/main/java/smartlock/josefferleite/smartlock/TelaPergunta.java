@@ -51,10 +51,6 @@ public class TelaPergunta extends AppCompatActivity {
         startLockTask();
 
 
-
-
-
-
      }
 
     public void  carregarDados(){
@@ -96,9 +92,8 @@ public class TelaPergunta extends AppCompatActivity {
 
     public void carregarinfotela() {
         int numeroaleatorio = 0;
+
         Random random = new Random();
-
-
         numeroaleatorio = random.nextInt(arrayperguntas.size());
 
         perguntas  =  arrayperguntas.get(numeroaleatorio);
@@ -212,6 +207,7 @@ public class TelaPergunta extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
+                carregarinfotela();
             }
         });
         mensagem.show();
