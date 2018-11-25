@@ -29,6 +29,7 @@ public class TelaPergunta extends AppCompatActivity {
     private android.support.v7.widget.AppCompatButton btnresp1;
     private android.support.v7.widget.AppCompatButton btnresp2;
     private android.support.v7.widget.AppCompatButton btnresp3;
+    private android.support.design.widget.FloatingActionButton faq;
     private Button btnok;
     private DatabaseReference databaseReference;
     private List<Perguntas> arrayperguntas = new ArrayList<Perguntas>();
@@ -68,8 +69,8 @@ public class TelaPergunta extends AppCompatActivity {
 
                     Perguntas perguntas = dados.getValue(Perguntas.class);
 
-                    Log.i("dados",perguntas.getExplicacao() + perguntas.getPergunta() + perguntas.getResp1() + perguntas.getResp2()
-                    + perguntas.getResp3() + perguntas.getResposta_certa());
+                  //  Log.i("dados",perguntas.getExplicacao() + perguntas.getPergunta() + perguntas.getResp1() + perguntas.getResp2()
+                  //  + perguntas.getResp3() + perguntas.getResposta_certa());
 
                     arrayperguntas.add(perguntas);
 
@@ -84,7 +85,7 @@ public class TelaPergunta extends AppCompatActivity {
             }
         });
 
-
+        databaseReference = databaseReference.child("NumResp").child("Certa");
     }
 
 
@@ -96,12 +97,13 @@ public class TelaPergunta extends AppCompatActivity {
         Random random = new Random();
         numeroaleatorio = random.nextInt(arrayperguntas.size());
 
-        perguntas  =  arrayperguntas.get(numeroaleatorio);
+        perguntas   =  arrayperguntas.get(numeroaleatorio);
         txtpergunta = (TextView) findViewById(R.id.txt_pergunta);
-        btnresp1  = (android.support.v7.widget.AppCompatButton) findViewById(R.id.btn_resp1);
-        btnresp2  = (android.support.v7.widget.AppCompatButton) findViewById(R.id.btn_resp2);
-        btnresp3  = (android.support.v7.widget.AppCompatButton) findViewById(R.id.btn_resp3);
-        btnok = (Button) findViewById(R.id.btn_ok);
+        btnresp1    = (android.support.v7.widget.AppCompatButton) findViewById(R.id.btn_resp1);
+        btnresp2    = (android.support.v7.widget.AppCompatButton) findViewById(R.id.btn_resp2);
+        btnresp3    = (android.support.v7.widget.AppCompatButton) findViewById(R.id.btn_resp3);
+        faq         =   (android.support.design.widget.FloatingActionButton) findViewById(R.id.faq);
+        btnok       = (Button) findViewById(R.id.btn_ok);
 
         txtpergunta.setText(perguntas.getPergunta());
         btnresp1.setText(perguntas.getResp1());
@@ -150,7 +152,14 @@ public class TelaPergunta extends AppCompatActivity {
         });
 
 
+    faq.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
 
+            explicacao();
+
+        }
+    });
 
     }
 
@@ -208,6 +217,21 @@ public class TelaPergunta extends AppCompatActivity {
             public void onClick(DialogInterface dialog, int which) {
 
                 carregarinfotela();
+            }
+        });
+        mensagem.show();
+    }
+
+    public void explicacao(){
+        AlertDialog.Builder mensagem = new AlertDialog.Builder(this);
+        mensagem.setTitle("Explicação");
+        mensagem.setIcon(R.drawable.ic_faq);
+        mensagem.setMessage(perguntas.getExplicacao());
+        mensagem.setPositiveButton("0k", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+
+
             }
         });
         mensagem.show();
