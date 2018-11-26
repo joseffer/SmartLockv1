@@ -19,6 +19,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.lang.reflect.Array;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -35,6 +36,7 @@ public class TelaPergunta extends AppCompatActivity {
     private List<Perguntas> arrayperguntas = new ArrayList<Perguntas>();
     int  numerobtnselecionado = 0;
     Perguntas  perguntas = new Perguntas();
+
 
 
     @Override
@@ -85,7 +87,7 @@ public class TelaPergunta extends AppCompatActivity {
             }
         });
 
-        databaseReference = databaseReference.child("NumResp").child("Certa");
+
     }
 
 
@@ -168,24 +170,28 @@ public class TelaPergunta extends AppCompatActivity {
        btnresp2  = (android.support.v7.widget.AppCompatButton) findViewById(R.id.btn_resp2);
        btnresp3  = (android.support.v7.widget.AppCompatButton) findViewById(R.id.btn_resp3);
 
+       long date = System.currentTimeMillis();
+       SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yy");
+       String dateString = sdf.format(date);
+
         switch (numerobtnselecionado) {
             case 1:
                 if (perguntas.getResposta_certa().equals(btnresp1.getText()))
-                   acerto();
+                   acerto(dateString);
                 else
-                  errou();
+                  errou(dateString);
                 break;
             case 2:
                 if (btnresp2.getText().equals( perguntas.getResposta_certa()))
-                    acerto();
+                    acerto(dateString);
                 else
-                    errou();
+                    errou(dateString);
                 break;
             case 3:
                 if (btnresp3.getText().equals( perguntas.getResposta_certa()))
-                    acerto();
+                    acerto(dateString);
                 else
-                    errou();
+                    errou(dateString);
                 break;
             case 0:
                 Toast.makeText(this,"Escolha uma opcao",Toast.LENGTH_SHORT).show();
@@ -193,7 +199,49 @@ public class TelaPergunta extends AppCompatActivity {
         }
    }
 
-   public void acerto(){
+   public void acerto(final String dataatual){
+       databaseReference = FirebaseDatabase.getInstance().getReference();
+       databaseReference = databaseReference.child("NumResp").child(dataatual);
+           databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+               @Override
+               public void onDataChange( DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.getValue() == null){
+                        databaseReference.child("errada").setValue(0);
+                        databaseReference.child("certo").setValue(1);
+                    }else {
+                        int total = Integer.parseInt(dataSnapshot.child("certo").getValue().toString()); // Carrega o valor do child "total" na variavel inteira total
+                        total = total + 1;                                       // Incrementa 10 na variavel total (exemplo)
+                        databaseReference.child("certo").setValue(total);
+                    }
+                  /* Resps_Status resps_status = dataSnapshot.getValue(Resps_Status.class);
+
+                   //if (resps_status == null) {
+
+                       respsStatusok = resps_status;
+                       Log.i("aa",  "vazio");
+                   }else {
+                       respsStatusok = resps_status;
+                       Log.i("aa", "vc" + resps_status.getCerto());
+
+                   }
+                   */
+               }
+
+               @Override
+               public void onCancelled( DatabaseError databaseError) {
+
+                   Log.i("naobaixao", "naobaixao");
+               }
+           });
+
+
+       /*   if (respsStatusok == null){
+            databaseReference.child("errada").setValue(0);
+            databaseReference.child("certo").setValue(1);
+        }else
+       databaseReference.child("certo").setValue(respsStatusok.getCerto() + 1);
+*/
        AlertDialog.Builder mensagem = new AlertDialog.Builder(this);
         mensagem.setTitle("Parabnes");
         mensagem.setIcon(R.drawable.carinha_feliz);
@@ -202,12 +250,61 @@ public class TelaPergunta extends AppCompatActivity {
            @Override
            public void onClick(DialogInterface dialog, int which) {
                stopLockTask();
+
+
+
                finish();
            }
        });
     mensagem.show();
    }
-    public void errou(){
+
+
+    public void errou(String dataatual){
+
+        databaseReference = FirebaseDatabase.getInstance().getReference();
+
+        databaseReference = databaseReference.child("NumResp").child(dataatual);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                @Override
+                public void onDataChange( DataSnapshot dataSnapshot) {
+
+                    if (dataSnapshot.getValue() == null){
+                        databaseReference.child("errada").setValue(1);
+                        databaseReference.child("certo").setValue(0);
+                    }else {
+
+                        int total = Integer.parseInt(dataSnapshot.child("errada").getValue().toString()); // Carrega o valor do child "total" na variavel inteira total
+                        total = total + 1;                                       // Incrementa 10 na variavel total (exemplo)
+                        databaseReference.child("errada").setValue(total);
+                    }
+                    /*Resps_Status  resps_status = dataSnapshot.getValue(Resps_Status.class);
+                   if (resps_status == null) {
+                       respsStatusok =resps_status;
+                       Log.i("aa",  "vazio");
+                   }
+                   else{
+                    respsStatusok = resps_status;
+                    Log.i("aa",  "vc" + resps_status.getErrado());
+                    }*/
+                }
+
+                @Override
+                public void onCancelled( DatabaseError databaseError) {
+
+                    Log.i("naobaixao", "naobaixao");
+                }
+            });
+
+
+     /*   if (respsStatusok == null){
+            databaseReference.child("errada").setValue(1);
+            databaseReference.child("certo").setValue(0);
+
+        }else
+            databaseReference.child("errada").setValue(respsStatusok.getErrado() + 1);
+
+*/
         AlertDialog.Builder mensagem = new AlertDialog.Builder(this);
         mensagem.setTitle("ops");
         mensagem.setIcon(R.drawable.carinha_triste);
@@ -215,6 +312,9 @@ public class TelaPergunta extends AppCompatActivity {
         mensagem.setPositiveButton("0k", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
+
+
+
 
                 carregarinfotela();
             }
