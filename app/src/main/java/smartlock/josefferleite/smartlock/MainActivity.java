@@ -7,8 +7,11 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.github.rtoshiro.util.format.SimpleMaskFormatter;
 import com.github.rtoshiro.util.format.text.MaskTextWatcher;
@@ -20,40 +23,50 @@ import java.util.Calendar;
 public class MainActivity extends AppCompatActivity {
 
 
-    Button aceitar;
-    EditText edt_h;
-    EditText edt_m;
-    EditText edt_s;
-
-
-
+    private String[] tempostring =new String[]{"1 Minuto","5 Minutos" ,"10 Minutos", "15 Minutos",
+            "20 Minutos", "30 Minutos","40 Minutos",
+            "50 Minutos","1 hora"};
+    private int[] tempomilliseg = new int[]{60000, 300000, 600000,
+            900000, 1200000, 1800000, 2400000, 3000000, 3600000};
+  private   Button aceitar;
+  private   Spinner sp;
+  private   int valormilli;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        edt_h = (EditText)  findViewById(R.id.edt_h);
-        edt_m = (EditText)  findViewById(R.id.edt_m);
-        edt_s = (EditText)  findViewById(R.id.edt_s);
-        aceitar = (Button) findViewById(R.id.btn_confirmar);
+        ArrayAdapter <String>  adapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_dropdown_item,tempostring);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
+        sp = (Spinner) findViewById(R.id.sp_tempo);
+        sp.setAdapter(adapter);
 
-
-
-
-        aceitar.setOnClickListener(new View.OnClickListener() {
+        sp.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onClick(View v) {
-                Alarme_ativar();
-                Log.i("formato do campo" ,edt_h.getText().toString());
+            public void onItemSelected(AdapterView<?> adapterView, View view, int postion, long id) {
+                valormilli = postion;
+
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
             }
         });
 
+        aceitar = (Button) findViewById(R.id.btn_confirmar);
+        aceitar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Alarme_ativar(tempomilliseg[valormilli]);
+            }
+        });
 
     }
 
 
-    public void Alarme_ativar(){
+    public void Alarme_ativar(int tempoemmilli){
         final boolean alarmeAtivo = (PendingIntent.getBroadcast(this, 0 ,new Intent("chamar"),PendingIntent.FLAG_NO_CREATE) == null);
 
         if (alarmeAtivo){
@@ -64,7 +77,8 @@ public class MainActivity extends AppCompatActivity {
             c.setTimeInMillis(System.currentTimeMillis());// tempo atual do systema em mile segundos
            // c.add(Calendar.SECOND, 3); // tempo de delay para aparecer a aplicacao
             AlarmManager alarmManager = (AlarmManager) getSystemService(ALARM_SERVICE);
-            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), 200, p);
+            alarmManager.setRepeating(AlarmManager.RTC_WAKEUP, c.getTimeInMillis(), tempoemmilli, p);
+            Log.i("alarme","Funfou");
         }else{
             Log.i("alarme","alarme ativo");
         }
